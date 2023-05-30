@@ -23,8 +23,21 @@ export default function solution(content){
   }
 
   const processed = content
-    .split('\n');
+    .split('\r\n')
+    .slice(1)
+    .map((line) => line.split(','));
 
+  // first step
+  const totalGamesCount = processed.length;
+  // second step
+  // third step
+  // fourth step
+  // fifth step
+
+  const finalString = `Total games count: ${totalGamesCount}`;
+
+  console.log(finalString);
   console.log(processed);
+  // node bin/app.js __fixtures__/chess_games.csv
   // END
 }
