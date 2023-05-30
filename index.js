@@ -66,13 +66,20 @@ export default function solution(content){
     }, [])
     .join('\n  ');
   // fourth step
+  const luckyLosersCount = processed
+    .filter((game) => {
+      const lessRating = game[whiteRating] < game[blackRating] ? 'White' : 'Black';
+      if (game[winner] === lessRating) return true;
+      return false;
+    });
   // fifth step
-
+  // final
   const finalString = `Total games count: ${totalGamesCount}
 The approximate amount of: rated games - ${truesPercentage}%, not rated games- ${falsesPercentage}%
 All the variations of opening fullnames:
   ${fullnames}
-`;
+
+The number of games, which were won by players with less rating: ${luckyLosersCount.length}`;
 
   console.log(finalString);
   // node bin/app.js __fixtures__/chess_games.csv
