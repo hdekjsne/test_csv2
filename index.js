@@ -53,15 +53,26 @@ export default function solution(content){
   const ratedTrue = processed
     .filter((game) => game[ifRated] === 'TRUE')
     .map((game) => game[ifRated]);
-
   const truesPercentage = (ratedTrue.length / processed.length).toFixed(2) * 100;
   const falsesPercentage = 100 - truesPercentage;
   // third step
+  const fullnames = processed
+    .map((game) => game[openingFullname])
+    .reduce((acc, name) => {
+      if (!acc.includes(name)) {
+        acc.push(name);
+      }
+      return acc;
+    }, [])
+    .join('\n  ');
   // fourth step
   // fifth step
 
   const finalString = `Total games count: ${totalGamesCount}
-  The approximate amount of: rated games - ${truesPercentage}%, not rated games- ${falsesPercentage}%`;
+The approximate amount of: rated games - ${truesPercentage}%, not rated games- ${falsesPercentage}%
+All the variations of opening fullnames:
+  ${fullnames}
+`;
 
   console.log(finalString);
   // node bin/app.js __fixtures__/chess_games.csv
