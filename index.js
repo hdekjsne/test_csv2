@@ -73,12 +73,20 @@ export default function solution(content){
       return false;
     });
   // fifth step
+  const statuses = processed
+    .reduce((acc, game) => {
+      if (!acc.includes(game[status])) {
+        acc.push(game[status]);
+      }
+      return acc;
+    }, [])
+    .filter((status) => status !== undefined);
+  const statusesRatio = processed.
   // final
   const finalString = `Total games count: ${totalGamesCount}
 The approximate amount of: rated games - ${truesPercentage}%, not rated games- ${falsesPercentage}%
 All the variations of opening fullnames:
-  ${fullnames}
-
+  fullnames
 The number of games, which were won by players with less rating: ${luckyLosersCount.length}`;
 
   console.log(finalString);
